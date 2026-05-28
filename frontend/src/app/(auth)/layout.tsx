@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/stores/auth.store';
 
-export default function RootPage() {
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const isAuthenticated = useAuthStore((s) => !!s.token);
   const [hydrated, setHydrated] = useState(false);
@@ -20,8 +20,9 @@ export default function RootPage() {
 
   useEffect(() => {
     if (!hydrated) return;
-    router.replace(isAuthenticated ? '/kanban' : '/login');
+    if (isAuthenticated) router.replace('/kanban');
   }, [hydrated, isAuthenticated, router]);
 
-  return null;
+  if (!hydrated) return null;
+  return <>{children}</>;
 }
