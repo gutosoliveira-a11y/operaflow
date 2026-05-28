@@ -43,38 +43,43 @@ export class WhatsAppMessageProcessor extends WorkerHost {
       return;
     }
 
-    const slaDueDate = new Date(Date.now() + sector.slaDefaultHours * 3_600_000);
+    try {
+      const slaDueDate = new Date(Date.now() + sector.slaDefaultHours * 3_600_000);
 
-    const ticket = await this.prisma.ticket.create({
-      data: {
-        title: text.length > 80 ? `${text.slice(0, 77)}...` : text,
-        description: text,
-        status: 'aberto',
-        priority: 'media',
-        source: 'whatsapp',
-        sectorId: sector.id,
-        createdBy: creator.id,
-        slaDueDate,
-      },
-      include: { sector: true, creator: true },
-    });
+      const ticket = await this.prisma.ticket.create({
+        data: {
+          title: text.length > 80 ? `${text.slice(0, 77)}...` : text,
+          description: text,
+          status: 'aberto',
+          priority: 'media',
+          source: 'whatsapp',
+          sectorId: sector.id,
+          createdBy: creator.id,
+          slaDueDate,
+        },
+        include: { sector: true, creator: true },
+      });
 
-    await this.prisma.whatsappContact.upsert({
-      where: { phone: remoteJid },
-      create: { phone: remoteJid, name: pushName || remoteJid, lastTicketId: ticket.id },
-      update: { name: pushName || remoteJid, lastTicketId: ticket.id },
-    });
+      await this.prisma.whatsappContact.upsert({
+        where: { phone: remoteJid },
+        create: { phone: remoteJid, name: pushName || remoteJid, lastTicketId: ticket.id },
+        update: { name: pushName || remoteJid, lastTicketId: ticket.id },
+      });
 
-    this.ticketsGateway.emitTicketCreated(ticket as Record<string, unknown>);
+      this.ticketsGateway.emitTicketCreated(ticket as Record<string, unknown>);
 
-    const ticketNum = ticket.id.slice(0, 8).toUpperCase();
-    const reply =
-      `✅ Chamado #TK-${ticketNum} aberto!\n` +
-      `📁 Setor: ${sector.name}\n` +
-      `🔔 Prioridade: Média\n` +
-      `⏱️ SLA: ${sector.slaDefaultHours}h`;
+      const ticketNum = ticket.id.slice(0, 8).toUpperCase();
+      const reply =
+        `✅ Chamado #TK-${ticketNum} aberto!\n` +
+        `📁 Setor: ${sector.name}\n` +
+        `🔔 Prioridade: Média\n` +
+        `⏱️ SLA: ${sector.slaDefaultHours}h`;
 
-    await this.whatsappService.sendReply(remoteJid, reply);
-    this.logger.log(`Ticket TK-${ticketNum} created for ${remoteJid}`);
+      await this.whatsappService.sendReply(remoteJid, reply);
+      this.logger.log(`Ticket TK-${ticketNum} created for ${remoteJid}`);
+    } catch (err) {
+      this.logger.error(`Failed to process message from ${remoteJid}`, err);
+      throw err;
+    }
   }
 }
