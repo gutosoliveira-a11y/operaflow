@@ -3,12 +3,10 @@ import { BullModule } from '@nestjs/bullmq';
 import { WhatsAppController } from './whatsapp.controller';
 import { WhatsAppService, WHATSAPP_QUEUE } from './whatsapp.service';
 import { WhatsAppMessageProcessor } from './processors/whatsapp-message.processor';
-import { WebsocketModule } from '../websocket/websocket.module';
 
 @Module({
   imports: [
     BullModule.registerQueue({ name: WHATSAPP_QUEUE }),
-    WebsocketModule,
   ],
   controllers: [WhatsAppController],
   providers: [WhatsAppService, WhatsAppMessageProcessor],
