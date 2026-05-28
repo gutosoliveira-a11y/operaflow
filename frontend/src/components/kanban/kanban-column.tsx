@@ -26,6 +26,7 @@ export function KanbanColumn({ id, tickets }: KanbanColumnProps) {
 
   return (
     <div
+      ref={setNodeRef}
       className={cn(
         'bg-surface rounded-lg border-t-2 w-64 flex-shrink-0 flex flex-col',
         config.topColor,
@@ -39,7 +40,7 @@ export function KanbanColumn({ id, tickets }: KanbanColumnProps) {
         </span>
       </div>
 
-      <div ref={setNodeRef} className="p-2 space-y-2 flex-1 min-h-[400px]">
+      <div className="p-2 space-y-2 flex-1 min-h-[400px]">
         <SortableContext items={tickets.map((t) => t.id)} strategy={verticalListSortingStrategy}>
           {tickets.map((ticket) => (
             <TicketCard key={ticket.id} ticket={ticket} />

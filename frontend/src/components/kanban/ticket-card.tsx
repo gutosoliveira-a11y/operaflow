@@ -16,32 +16,26 @@ const priorityConfig: Record<Priority, { label: string; cls: string }> = {
 function formatSla(slaDueDate: string | null): { text: string; overdue: boolean } {
   if (!slaDueDate) return { text: 'Sem SLA', overdue: false };
   const diffMs = new Date(slaDueDate).getTime() - Date.now();
+  if (isNaN(diffMs)) return { text: 'Sem SLA', overdue: false };
   if (diffMs < 0) return { text: 'VENCIDO', overdue: true };
   const h = Math.floor(diffMs / 3_600_000);
   const m = Math.floor((diffMs % 3_600_000) / 60_000);
   return { text: h > 0 ? `${h}h ${m}m` : `${m}m`, overdue: false };
 }
 
-interface TicketCardProps {
+interface TicketCardContentProps {
   ticket: Ticket;
+  isDragging?: boolean;
 }
 
-export function TicketCard({ ticket }: TicketCardProps) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: ticket.id });
-
-  const style = { transform: CSS.Transform.toString(transform), transition };
+export function TicketCardContent({ ticket, isDragging }: TicketCardContentProps) {
   const p = priorityConfig[ticket.priority];
   const sla = formatSla(ticket.slaDueDate);
 
   return (
     <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
       className={cn(
-        'bg-card border border-border rounded-lg p-3 cursor-grab active:cursor-grabbing select-none',
+        'bg-card border border-border rounded-lg p-3 select-none',
         isDragging && 'opacity-50 shadow-xl ring-1 ring-accent'
       )}
     >
@@ -71,6 +65,25 @@ export function TicketCard({ ticket }: TicketCardProps) {
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+export function TicketCard({ ticket }: { ticket: Ticket }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
+    useSortable({ id: ticket.id });
+
+  const style = { transform: CSS.Transform.toString(transform), transition };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="cursor-grab active:cursor-grabbing"
+    >
+      <TicketCardContent ticket={ticket} isDragging={isDragging} />
     </div>
   );
 }
