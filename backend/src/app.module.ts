@@ -10,6 +10,7 @@ import { WebsocketModule } from './websocket/websocket.module';
 import { TicketsModule } from './tickets/tickets.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { WhatsAppModule } from './whatsapp/whatsapp.module';
+import { AIModule } from './ai/ai.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { WhatsAppModule } from './whatsapp/whatsapp.module';
     TicketsModule,
     DashboardModule,
     WhatsAppModule,
+    AIModule,
   ],
 })
 export class AppModule {}
