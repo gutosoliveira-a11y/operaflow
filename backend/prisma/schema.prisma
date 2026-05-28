@@ -37,6 +37,20 @@ enum MessageSource {
   system
 }
 
+enum TicketSource {
+  manual
+  whatsapp
+  system
+}
+
+enum NotificationType {
+  info
+  sla_breach
+  escalation
+  assignment
+  mention
+}
+
 model User {
   id           String  @id @default(cuid())
   name         String
@@ -55,7 +69,9 @@ model User {
   responsibleTickets    Ticket[]        @relation("TicketResponsible")
   messages              TicketMessage[]
   notifications         Notification[]
+  escalationsReceived   Escalation[]    @relation("EscalatedToUser")
 
+  @@index([isActive, role])
   @@map("users")
 }
 
@@ -68,7 +84,7 @@ model Sector {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  responsible User?       @relation("SectorResponsible", fields: [responsibleId], references: [id])
+  responsible User?       @relation("SectorResponsible", fields: [responsibleId], references: [id], onDelete: SetNull)
   users       User[]      @relation("UserSector")
   tickets     Ticket[]
   slaConfigs  SlaConfig[]
@@ -85,7 +101,7 @@ model Ticket {
   sectorId        String       @map("sector_id")
   responsibleId   String?      @map("responsible_id")
   createdBy       String       @map("created_by")
-  source          String       @default("manual")
+  source          TicketSource @default(manual)
   slaDueDate      DateTime?    @map("sla_due_date")
   escalationLevel Int          @default(0) @map("escalation_level")
 
@@ -93,16 +109,21 @@ model Ticket {
   updatedAt DateTime  @updatedAt @map("updated_at")
   closedAt  DateTime? @map("closed_at")
 
-  sector      Sector             @relation(fields: [sectorId], references: [id])
-  responsible User?              @relation("TicketResponsible", fields: [responsibleId], references: [id])
-  creator     User               @relation("TicketCreator", fields: [createdBy], references: [id])
-  messages    TicketMessage[]
-  attachments TicketAttachment[]
-  escalations Escalation[]
+  sector           Sector             @relation(fields: [sectorId], references: [id])
+  responsible      User?              @relation("TicketResponsible", fields: [responsibleId], references: [id])
+  creator          User               @relation("TicketCreator", fields: [createdBy], references: [id])
+  messages         TicketMessage[]
+  attachments      TicketAttachment[]
+  escalations      Escalation[]
+  aiLogs           AiLog[]
+  whatsappContacts WhatsappContact[]
 
   @@index([status])
   @@index([sectorId])
   @@index([slaDueDate])
+  @@index([responsibleId])
+  @@index([createdBy])
+  @@index([priority, status])
   @@map("tickets")
 }
 
@@ -117,6 +138,7 @@ model TicketMessage {
   ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
   author User?  @relation(fields: [authorId], references: [id])
 
+  @@index([ticketId])
   @@map("ticket_messages")
 }
 
@@ -140,7 +162,8 @@ model Escalation {
   reason          String?
   createdAt       DateTime @default(now()) @map("created_at")
 
-  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  ticket        Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  escalatedUser User?  @relation("EscalatedToUser", fields: [escalatedTo], references: [id], onDelete: SetNull)
 
   @@map("escalations")
 }
@@ -155,7 +178,7 @@ model SlaConfig {
   sector Sector @relation(fields: [sectorId], references: [id], onDelete: Cascade)
 
   @@unique([sectorId, priority])
-  @@map("sla_config")
+  @@map("sla_configs")
 }
 
 model AiLog {
@@ -166,17 +189,19 @@ model AiLog {
   ticketId   String?  @map("ticket_id")
   createdAt  DateTime @default(now()) @map("created_at")
 
+  ticket Ticket? @relation(fields: [ticketId], references: [id], onDelete: SetNull)
+
   @@map("ai_logs")
 }
 
 model Notification {
-  id        String   @id @default(cuid())
-  userId    String   @map("user_id")
+  id        String           @id @default(cuid())
+  userId    String           @map("user_id")
   title     String
   message   String
-  type      String   @default("info")
-  isRead    Boolean  @default(false) @map("is_read")
-  createdAt DateTime @default(now()) @map("created_at")
+  type      NotificationType @default(info)
+  isRead    Boolean          @default(false) @map("is_read")
+  createdAt DateTime         @default(now()) @map("created_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -190,6 +215,8 @@ model WhatsappContact {
   name         String?
   lastTicketId String?  @map("last_ticket_id")
   createdAt    DateTime @default(now()) @map("created_at")
+
+  lastTicket Ticket? @relation(fields: [lastTicketId], references: [id], onDelete: SetNull)
 
   @@map("whatsapp_contacts")
 }
