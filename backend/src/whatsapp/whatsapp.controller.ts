@@ -26,6 +26,6 @@ export class WhatsAppController {
       throw new UnauthorizedException('Invalid webhook secret');
     }
     await this.whatsappService.enqueue(payload);
-    return { ok: true };
+    return { data: null, message: 'Webhook received', statusCode: 200 };
   }
 }

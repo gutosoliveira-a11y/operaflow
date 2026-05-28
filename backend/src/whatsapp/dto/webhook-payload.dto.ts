@@ -1,8 +1,15 @@
-import { IsString, IsOptional, ValidateNested, IsObject } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+
+export class WaExtendedTextDto {
+  @IsString()
+  @IsOptional()
+  text?: string;
+}
 
 export class WaMessageKeyDto {
   @IsString()
+  @IsNotEmpty()
   remoteJid: string;
 
   @IsString()
@@ -15,9 +22,10 @@ export class WaMessageDataDto {
   @IsOptional()
   conversation?: string;
 
-  @IsObject()
+  @ValidateNested()
+  @Type(() => WaExtendedTextDto)
   @IsOptional()
-  extendedTextMessage?: { text: string };
+  extendedTextMessage?: WaExtendedTextDto;
 }
 
 export class WaMessageDto {
