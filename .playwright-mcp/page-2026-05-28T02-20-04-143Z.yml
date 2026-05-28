@@ -1,0 +1,242 @@
+- generic [active] [ref=e1]:
+  - img
+  - generic [ref=e3]:
+    - img [ref=e8]
+    - generic [ref=e43]:
+      - generic:
+        - img
+      - generic [ref=e44]:
+        - generic [ref=e48]:
+          - heading "OperaFlow API 1.0 OAS 3.0" [level=2] [ref=e50]:
+            - text: OperaFlow API
+            - generic [ref=e51]:
+              - generic [ref=e53]: "1.0"
+              - generic [ref=e55]: OAS 3.0
+          - paragraph [ref=e58]: Plataforma Inteligente de Gestão Operacional Industrial
+        - button "Authorize" [ref=e62] [cursor=pointer]:
+          - generic [ref=e63]: Authorize
+          - img [ref=e64]
+        - generic [ref=e68]:
+          - generic [ref=e70]:
+            - heading "Auth Collapse operation" [level=3] [ref=e71] [cursor=pointer]:
+              - link "Auth" [ref=e72]:
+                - /url: "#/Auth"
+              - button "Collapse operation" [expanded] [ref=e73]:
+                - img [ref=e74]
+            - generic [ref=e77]:
+              - generic [ref=e80] [cursor=pointer]:
+                - button "POST /api/auth/login Login com e-mail e senha" [ref=e81]:
+                  - generic [ref=e82]: POST
+                  - generic [ref=e83]:
+                    - link "/api/auth/login" [ref=e85]:
+                      - /url: "#/Auth/AuthController_login"
+                      - generic [ref=e86]:
+                        - text: /api
+                        - text: /auth
+                        - text: /login
+                    - generic [ref=e87]: Login com e-mail e senha
+                - generic "Copy to clipboard"
+                - button "post /api/auth/login" [ref=e90]:
+                  - img [ref=e91]
+              - generic [ref=e95] [cursor=pointer]:
+                - button "GET /api/auth/me Retorna perfil do usuário autenticado" [ref=e96]:
+                  - generic [ref=e97]: GET
+                  - generic [ref=e98]:
+                    - link "/api/auth/me" [ref=e100]:
+                      - /url: "#/Auth/AuthController_getProfile"
+                      - generic [ref=e101]:
+                        - text: /api
+                        - text: /auth
+                        - text: /me
+                    - generic [ref=e102]: Retorna perfil do usuário autenticado
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e105]:
+                  - img [ref=e106]
+                - button "get /api/auth/me" [ref=e108]:
+                  - img [ref=e109]
+          - generic [ref=e112]:
+            - heading "Users Collapse operation" [level=3] [ref=e113] [cursor=pointer]:
+              - link "Users" [ref=e114]:
+                - /url: "#/Users"
+              - button "Collapse operation" [expanded] [ref=e115]:
+                - img [ref=e116]
+            - generic [ref=e119]:
+              - generic [ref=e122] [cursor=pointer]:
+                - button "GET /api/users Listar todos os usuários" [ref=e123]:
+                  - generic [ref=e124]: GET
+                  - generic [ref=e125]:
+                    - link "/api/users" [ref=e127]:
+                      - /url: "#/Users/UsersController_findAll"
+                      - generic [ref=e128]:
+                        - text: /api
+                        - text: /users
+                    - generic [ref=e129]: Listar todos os usuários
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e132]:
+                  - img [ref=e133]
+                - button "get /api/users" [ref=e135]:
+                  - img [ref=e136]
+              - generic [ref=e140] [cursor=pointer]:
+                - button "POST /api/users Criar novo usuário" [ref=e141]:
+                  - generic [ref=e142]: POST
+                  - generic [ref=e143]:
+                    - link "/api/users" [ref=e145]:
+                      - /url: "#/Users/UsersController_create"
+                      - generic [ref=e146]:
+                        - text: /api
+                        - text: /users
+                    - generic [ref=e147]: Criar novo usuário
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e150]:
+                  - img [ref=e151]
+                - button "post /api/users" [ref=e153]:
+                  - img [ref=e154]
+              - generic [ref=e158] [cursor=pointer]:
+                - 'button "GET /api/users/{id} Buscar usuário por ID" [ref=e159]':
+                  - generic [ref=e160]: GET
+                  - generic [ref=e161]:
+                    - 'link "/api/users/{id}" [ref=e163]':
+                      - /url: "#/Users/UsersController_findOne"
+                      - generic [ref=e164]:
+                        - text: /api
+                        - text: /users
+                        - text: "/{id}"
+                    - generic [ref=e165]: Buscar usuário por ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e168]:
+                  - img [ref=e169]
+                - 'button "get /api/users/{id}" [ref=e171]':
+                  - img [ref=e172]
+              - generic [ref=e176] [cursor=pointer]:
+                - 'button "PATCH /api/users/{id} Atualizar usuário" [ref=e177]':
+                  - generic [ref=e178]: PATCH
+                  - generic [ref=e179]:
+                    - 'link "/api/users/{id}" [ref=e181]':
+                      - /url: "#/Users/UsersController_update"
+                      - generic [ref=e182]:
+                        - text: /api
+                        - text: /users
+                        - text: "/{id}"
+                    - generic [ref=e183]: Atualizar usuário
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e186]:
+                  - img [ref=e187]
+                - 'button "patch /api/users/{id}" [ref=e189]':
+                  - img [ref=e190]
+              - generic [ref=e194] [cursor=pointer]:
+                - 'button "DELETE /api/users/{id} Desativar usuário (soft delete)" [ref=e195]':
+                  - generic [ref=e196]: DELETE
+                  - generic [ref=e197]:
+                    - 'link "/api/users/{id}" [ref=e199]':
+                      - /url: "#/Users/UsersController_remove"
+                      - generic [ref=e200]:
+                        - text: /api
+                        - text: /users
+                        - text: "/{id}"
+                    - generic [ref=e201]: Desativar usuário (soft delete)
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e204]:
+                  - img [ref=e205]
+                - 'button "delete /api/users/{id}" [ref=e207]':
+                  - img [ref=e208]
+          - generic [ref=e211]:
+            - heading "Sectors Collapse operation" [level=3] [ref=e212] [cursor=pointer]:
+              - link "Sectors" [ref=e213]:
+                - /url: "#/Sectors"
+              - button "Collapse operation" [expanded] [ref=e214]:
+                - img [ref=e215]
+            - generic [ref=e218]:
+              - generic [ref=e221] [cursor=pointer]:
+                - button "GET /api/sectors Listar todos os setores" [ref=e222]:
+                  - generic [ref=e223]: GET
+                  - generic [ref=e224]:
+                    - link "/api/sectors" [ref=e226]:
+                      - /url: "#/Sectors/SectorsController_findAll"
+                      - generic [ref=e227]:
+                        - text: /api
+                        - text: /sectors
+                    - generic [ref=e228]: Listar todos os setores
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e231]:
+                  - img [ref=e232]
+                - button "get /api/sectors" [ref=e234]:
+                  - img [ref=e235]
+              - generic [ref=e239] [cursor=pointer]:
+                - button "POST /api/sectors Criar novo setor" [ref=e240]:
+                  - generic [ref=e241]: POST
+                  - generic [ref=e242]:
+                    - link "/api/sectors" [ref=e244]:
+                      - /url: "#/Sectors/SectorsController_create"
+                      - generic [ref=e245]:
+                        - text: /api
+                        - text: /sectors
+                    - generic [ref=e246]: Criar novo setor
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e249]:
+                  - img [ref=e250]
+                - button "post /api/sectors" [ref=e252]:
+                  - img [ref=e253]
+              - generic [ref=e257] [cursor=pointer]:
+                - 'button "GET /api/sectors/{id} Buscar setor por ID" [ref=e258]':
+                  - generic [ref=e259]: GET
+                  - generic [ref=e260]:
+                    - 'link "/api/sectors/{id}" [ref=e262]':
+                      - /url: "#/Sectors/SectorsController_findOne"
+                      - generic [ref=e263]:
+                        - text: /api
+                        - text: /sectors
+                        - text: "/{id}"
+                    - generic [ref=e264]: Buscar setor por ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e267]:
+                  - img [ref=e268]
+                - 'button "get /api/sectors/{id}" [ref=e270]':
+                  - img [ref=e271]
+              - generic [ref=e275] [cursor=pointer]:
+                - 'button "PATCH /api/sectors/{id} Atualizar setor" [ref=e276]':
+                  - generic [ref=e277]: PATCH
+                  - generic [ref=e278]:
+                    - 'link "/api/sectors/{id}" [ref=e280]':
+                      - /url: "#/Sectors/SectorsController_update"
+                      - generic [ref=e281]:
+                        - text: /api
+                        - text: /sectors
+                        - text: "/{id}"
+                    - generic [ref=e282]: Atualizar setor
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e285]:
+                  - img [ref=e286]
+                - 'button "patch /api/sectors/{id}" [ref=e288]':
+                  - img [ref=e289]
+              - generic [ref=e293] [cursor=pointer]:
+                - 'button "DELETE /api/sectors/{id} Remover setor" [ref=e294]':
+                  - generic [ref=e295]: DELETE
+                  - generic [ref=e296]:
+                    - 'link "/api/sectors/{id}" [ref=e298]':
+                      - /url: "#/Sectors/SectorsController_remove"
+                      - generic [ref=e299]:
+                        - text: /api
+                        - text: /sectors
+                        - text: "/{id}"
+                    - generic [ref=e300]: Remover setor
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e303]:
+                  - img [ref=e304]
+                - 'button "delete /api/sectors/{id}" [ref=e306]':
+                  - img [ref=e307]
+        - generic [ref=e311]:
+          - heading "Schemas" [level=4] [ref=e312] [cursor=pointer]:
+            - button "Schemas" [expanded] [ref=e313]:
+              - generic [ref=e314]: Schemas
+              - img [ref=e315]
+          - generic [ref=e317]:
+            - button "LoginDto" [ref=e320] [cursor=pointer]:
+              - generic [ref=e322]: LoginDto
+            - button "CreateUserDto" [ref=e326] [cursor=pointer]:
+              - generic [ref=e328]: CreateUserDto
+            - button "UpdateUserDto" [ref=e332] [cursor=pointer]:
+              - generic [ref=e334]: UpdateUserDto
+            - button "CreateSectorDto" [ref=e338] [cursor=pointer]:
+              - generic [ref=e340]: CreateSectorDto
+            - button "UpdateSectorDto" [ref=e344] [cursor=pointer]:
+              - generic [ref=e346]: UpdateSectorDto

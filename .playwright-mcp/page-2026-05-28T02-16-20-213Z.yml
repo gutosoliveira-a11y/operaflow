@@ -1,0 +1,355 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - banner:
+            - generic:
+              - generic:
+                - link:
+                  - /url: /dashboard/org/aokyowkqqnwtwdtjarud
+                  - img
+                - generic:
+                  - generic:
+                    - img
+                  - generic:
+                    - link:
+                      - /url: /dashboard/org/aokyowkqqnwtwdtjarud
+                      - img
+                      - generic: gutosoliveira-a11y's Org
+                      - generic: Free
+                    - button:
+                      - generic:
+                        - img
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - link:
+                        - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz
+                        - img
+                        - generic: operaflow
+                      - button:
+                        - generic:
+                          - img
+                    - generic:
+                      - img
+                    - generic:
+                      - link:
+                        - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz
+                        - generic: main
+                        - generic: Production
+                      - button:
+                        - generic:
+                          - img
+                - generic:
+                  - button:
+                    - generic:
+                      - img
+                    - generic: Connect
+              - generic:
+                - generic:
+                  - generic: Feedback
+                - generic:
+                  - button:
+                    - generic:
+                      - img
+                      - paragraph: Search...
+                    - generic:
+                      - generic: Ctrl K
+                  - button [ref=e715] [cursor=pointer]:
+                    - generic [ref=e469]:
+                      - img [ref=e470]
+                      - generic [ref=e473]: Help
+                  - button [ref=e716] [cursor=pointer]:
+                    - generic [ref=e476]:
+                      - img [ref=e477]
+                      - generic [ref=e479]: Advisor Center
+                  - button [ref=e717] [cursor=pointer]:
+                    - generic [ref=e481]:
+                      - img [ref=e482]
+                      - generic [ref=e484]: SQL Editor
+                  - button [ref=e718] [cursor=pointer]:
+                    - generic [ref=e486]:
+                      - img [ref=e489]
+                      - generic [ref=e492]: AI Assistant
+                - button [ref=e719] [cursor=pointer]:
+                  - img [ref=e720]
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - list:
+                      - generic:
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/editor
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/sql
+                            - img
+                      - generic:
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/database/schemas
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/auth/users
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/storage/files
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/functions
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/realtime/inspector
+                            - img
+                      - generic:
+                        - generic:
+                          - listitem:
+                            - link:
+                              - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/advisors/security
+                              - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/observability
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/logs/explorer
+                            - img
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/integrations
+                            - img
+                      - generic:
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/yaybxcrgaxwyvtmznkrz/settings/general
+                            - img
+                - generic:
+                  - generic:
+                    - button:
+                      - generic:
+                        - img
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - heading [level=4]: Table Editor
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - generic:
+                                      - button:
+                                        - generic:
+                                          - generic:
+                                            - paragraph: schema
+                                            - paragraph: public
+                                        - generic:
+                                          - img
+                                    - button [ref=e721] [cursor=pointer]:
+                                      - img [ref=e607]
+                                      - generic [ref=e608]: New table
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic: Search tables
+                                        - textbox:
+                                          - /placeholder: Search tables...
+                                        - button:
+                                          - img
+                                        - img
+                                      - button:
+                                        - generic:
+                                          - img
+                                    - generic:
+                                      - generic:
+                                        - paragraph: No tables or views
+                                        - paragraph: Any tables or views you create will be listed here.
+                                        - generic:
+                                          - generic:
+                                            - generic:
+                                              - img
+                                            - generic:
+                                              - generic:
+                                                - img
+                                                - text: postgres_table_0
+                                            - generic:
+                                              - generic:
+                                                - img
+                                                - text: postgres_table_1
+                                            - generic:
+                                              - generic:
+                                                - img
+                                                - text: postgres_table_2
+                                            - generic:
+                                              - generic:
+                                                - img
+                                                - text: postgres_table_3
+                      - separator:
+                        - generic:
+                          - img
+                      - generic:
+                        - generic:
+                          - main:
+                            - generic:
+                              - generic:
+                                - button:
+                                  - img
+                                  - generic: Collapse sidebar
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - img
+                                          - generic:
+                                            - heading [level=3]: Create a table
+                                            - paragraph: Design and create a new database table
+                                    - generic:
+                                      - heading [level=2]: Recent items
+                                      - generic:
+                                        - generic:
+                                          - img
+                                          - generic:
+                                            - paragraph: No recent items yet
+                                            - paragraph: Items will appear here as you browse through your project
+  - generic:
+    - alert: Table Editor | operaflow | gutosoliveira-a11y's Org | Supabase
+  - dialog "Connect to your project" [ref=e723]:
+    - generic [ref=e724]:
+      - heading "Connect to your project" [level=2] [ref=e725]
+      - paragraph [ref=e726]: Choose how you want to use Supabase
+    - generic [ref=e727]:
+      - generic [ref=e729]:
+        - button "Framework Use a client library" [ref=e730]:
+          - img [ref=e732]
+          - generic [ref=e735]:
+            - paragraph [ref=e736]: Framework
+            - paragraph [ref=e737]: Use a client library
+        - button "Direct Connection string" [ref=e738]:
+          - img [ref=e740]
+          - generic [ref=e744]:
+            - paragraph [ref=e745]: Direct
+            - paragraph [ref=e746]: Connection string
+        - button "ORM Third-party library" [ref=e747]:
+          - img [ref=e749]
+          - generic [ref=e755]:
+            - paragraph [ref=e756]: ORM
+            - paragraph [ref=e757]: Third-party library
+        - button "MCP Connect your agent" [ref=e758]:
+          - img [ref=e760]
+          - generic [ref=e762]:
+            - paragraph [ref=e763]: MCP
+            - paragraph [ref=e764]: Connect your agent
+      - generic [ref=e766]:
+        - generic [ref=e896]:
+          - generic [ref=e1040]: Connection Method
+          - radiogroup [ref=e902]:
+            - radio "Direct connection Ideal for applications with persistent and long-lived connections, such as those running on virtual machines or long-standing containers." [ref=e903] [cursor=pointer]:
+              - generic [ref=e910]:
+                - generic [ref=e912]: Direct connection
+                - generic [ref=e913]: Ideal for applications with persistent and long-lived connections, such as those running on virtual machines or long-standing containers.
+            - radio "Transaction pooler Ideal for stateless applications like serverless functions where each interaction with Postgres is brief and isolated." [ref=e914] [cursor=pointer]:
+              - generic [ref=e918]:
+                - generic [ref=e920]: Transaction pooler
+                - generic [ref=e921]: Ideal for stateless applications like serverless functions where each interaction with Postgres is brief and isolated.
+            - radio "Session pooler Only recommended as an alternative to Direct Connection, when connecting via an IPv4 network." [checked] [active] [ref=e922] [cursor=pointer]:
+              - generic [ref=e923]:
+                - img [ref=e1042]
+                - generic [ref=e926]:
+                  - generic [ref=e928]: Session pooler
+                  - generic [ref=e929]: Only recommended as an alternative to Direct Connection, when connecting via an IPv4 network.
+        - generic [ref=e931]:
+          - generic [ref=e1044]: Type
+          - combobox [ref=e937]:
+            - generic: URI
+            - img [ref=e938]
+      - generic [ref=e804]:
+        - heading "Connect your app" [level=3] [ref=e805]
+        - alert [ref=e806]:
+          - generic [ref=e807]:
+            - generic [ref=e809]:
+              - img "Supabase Grafana" [ref=e811]
+              - paragraph [ref=e815]: Give your agent everything it needs
+            - button "Copy prompt" [ref=e817] [cursor=pointer]:
+              - img [ref=e819]
+              - generic [ref=e822]: Copy prompt
+        - generic [ref=e823]:
+          - generic [ref=e958]:
+            - generic [ref=e962]: "1"
+            - generic [ref=e963]:
+              - generic [ref=e964]:
+                - paragraph [ref=e965]: Connection string
+                - paragraph [ref=e966]: Copy the connection details for your database.
+              - generic [ref=e968]:
+                - generic [ref=e1046]: Shared Pooler
+                - generic [ref=e969]:
+                  - code [ref=e971]:
+                    - generic [ref=e972]: postgresql://postgres.yaybxcrgaxwyvtmznkrz:[YOUR-PASSWORD]@aws-1-sa-east-1.pooler.supabase.com:5432/postgres
+                  - button [ref=e974] [cursor=pointer]:
+                    - img [ref=e1037]
+                - generic [ref=e981]:
+                  - img [ref=e1047]
+                  - generic [ref=e990]:
+                    - generic [ref=e991]: Only use on a IPv4 network
+                    - generic [ref=e1049]:
+                      - paragraph [ref=e1050]: Session pooler connections are IPv4 proxied for free.
+                      - paragraph [ref=e1051]: Use Direct Connection if connecting via an IPv6 network.
+                - generic [ref=e1004]:
+                  - generic [ref=e1006]:
+                    - generic [ref=e1007]: "host:"
+                    - generic [ref=e1008]: aws-1-sa-east-1.pooler.supabase.com
+                    - button [ref=e1009]:
+                      - img [ref=e1010]
+                  - generic [ref=e1014]:
+                    - generic [ref=e1015]: "port:"
+                    - generic [ref=e1016]: "5432"
+                    - button [ref=e1017]:
+                      - img [ref=e1018]
+                  - generic [ref=e1022]:
+                    - generic [ref=e1023]: "database:"
+                    - generic [ref=e1024]: postgres
+                    - button [ref=e1025]:
+                      - img [ref=e1026]
+                  - generic [ref=e1030]:
+                    - generic [ref=e1031]: "user:"
+                    - generic [ref=e1032]: postgres.yaybxcrgaxwyvtmznkrz
+                    - button [ref=e1033]:
+                      - img [ref=e1034]
+          - generic [ref=e870]:
+            - generic [ref=e874]: "2"
+            - generic [ref=e875]:
+              - generic [ref=e876]:
+                - paragraph [ref=e877]: Install Agent Skills (Optional)
+                - paragraph [ref=e878]: Agent Skills give AI coding tools ready-made instructions, scripts, and resources for working with Supabase more accurately and efficiently.
+              - generic [ref=e880]:
+                - code [ref=e882]: npx skills add supabase/agent-skills
+                - button "Copy" [ref=e884] [cursor=pointer]:
+                  - img [ref=e886]
+                  - generic [ref=e889]: Copy
+    - button "Close" [ref=e890]:
+      - img [ref=e891]
+      - generic [ref=e894]: Close

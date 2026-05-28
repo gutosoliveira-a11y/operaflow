@@ -1,0 +1,221 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - banner [ref=e6]:
+        - generic [ref=e7]:
+          - link "Supabase" [ref=e9] [cursor=pointer]:
+            - /url: /dashboard/org/aokyowkqqnwtwdtjarud
+            - img "Supabase" [ref=e10]
+          - generic [ref=e11]:
+            - generic [ref=e13] [cursor=pointer]: Feedback
+            - generic [ref=e14]:
+              - button "Search..." [ref=e15]:
+                - generic [ref=e16]:
+                  - img [ref=e17]
+                  - paragraph [ref=e20]: Search...
+                - generic [ref=e22]: Ctrl K
+              - button "Help" [ref=e23] [cursor=pointer]:
+                - generic [ref=e24]:
+                  - img [ref=e25]
+                  - generic [ref=e28]: Help
+              - button "Advisor Center" [ref=e30] [cursor=pointer]:
+                - generic [ref=e31]:
+                  - img [ref=e32]
+                  - generic [ref=e34]: Advisor Center
+            - button [ref=e35] [cursor=pointer]:
+              - img [ref=e38]
+      - generic [ref=e40]:
+        - button "Sidebar control" [ref=e48] [cursor=pointer]:
+          - img [ref=e50]
+        - generic [ref=e57]:
+          - generic [ref=e61]:
+            - heading "Database" [level=4] [ref=e63]
+            - menu "Sidebar" [disabled] [ref=e66]:
+              - list [ref=e67]:
+                - generic [ref=e70]:
+                  - generic [ref=e74]: Database Management
+                  - generic [ref=e75]:
+                    - link "Schema Visualizer" [disabled] [ref=e76] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/schemas
+                      - menuitem "Schema Visualizer" [disabled] [ref=e77]:
+                        - generic [ref=e81]: Schema Visualizer
+                    - link "Tables" [disabled] [ref=e82] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/tables
+                      - menuitem "Tables" [disabled] [ref=e83]:
+                        - generic [ref=e87]: Tables
+                    - link "Functions" [disabled] [ref=e88] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/functions
+                      - menuitem "Functions" [disabled] [ref=e89]:
+                        - generic [ref=e93]: Functions
+                    - link "Triggers" [disabled] [ref=e94] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/triggers/data
+                      - menuitem "Triggers" [disabled] [ref=e95]:
+                        - generic [ref=e99]: Triggers
+                    - link "Enumerated Types" [disabled] [ref=e100] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/types
+                      - menuitem "Enumerated Types" [disabled] [ref=e101]:
+                        - generic [ref=e105]: Enumerated Types
+                    - link "Extensions" [disabled] [ref=e106] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/extensions
+                      - menuitem "Extensions" [disabled] [ref=e107]:
+                        - generic [ref=e111]: Extensions
+                    - link "Indexes" [disabled] [ref=e112] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/indexes
+                      - menuitem "Indexes" [disabled] [ref=e113]:
+                        - generic [ref=e117]: Indexes
+                    - link "Publications" [disabled] [ref=e118] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/publications
+                      - menuitem "Publications" [disabled] [ref=e119]:
+                        - generic [ref=e123]: Publications
+                - generic [ref=e127]:
+                  - generic [ref=e131]: Configuration
+                  - generic [ref=e132]:
+                    - link "Roles" [disabled] [ref=e133] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/roles
+                      - menuitem "Roles" [disabled] [ref=e134]:
+                        - generic [ref=e138]: Roles
+                    - link "Policies" [disabled] [ref=e139] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/auth/policies
+                      - menuitem "Policies" [disabled] [ref=e140]:
+                        - generic [ref=e142]:
+                          - generic "Policies" [ref=e143]:
+                            - generic [ref=e144]: Policies
+                          - img [ref=e146]
+                    - link "Settings" [disabled] [ref=e149] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/settings
+                      - menuitem "Settings" [disabled] [ref=e150]:
+                        - generic [ref=e154]: Settings
+                - generic [ref=e158]:
+                  - generic [ref=e162]: Platform
+                  - generic [ref=e163]:
+                    - link "Replication" [disabled] [ref=e164] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/replication
+                      - menuitem "Replication" [disabled] [ref=e165]:
+                        - generic [ref=e169]: Replication
+                    - link "Backups" [disabled] [ref=e170] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/backups/scheduled
+                      - menuitem "Backups" [disabled] [ref=e171]:
+                        - generic [ref=e175]: Backups
+                    - link "Migrations" [disabled] [ref=e176] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/database/migrations
+                      - menuitem "Migrations" [disabled] [ref=e177]:
+                        - generic [ref=e181]: Migrations
+                    - link "Wrappers" [disabled] [ref=e182] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/integrations?category=wrapper
+                      - menuitem "Wrappers" [disabled] [ref=e183]:
+                        - generic [ref=e185]:
+                          - generic "Wrappers" [ref=e186]:
+                            - generic [ref=e187]: Wrappers
+                          - img [ref=e189]
+                - generic [ref=e195]:
+                  - generic [ref=e199]: Tools
+                  - generic [ref=e200]:
+                    - link "Security Advisor" [disabled] [ref=e201] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/advisors/security
+                      - menuitem "Security Advisor" [disabled] [ref=e202]:
+                        - generic [ref=e204]:
+                          - generic "Security Advisor" [ref=e205]:
+                            - generic [ref=e206]: Security Advisor
+                          - img [ref=e208]
+                    - link "Performance Advisor" [disabled] [ref=e211] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/advisors/performance
+                      - menuitem "Performance Advisor" [disabled] [ref=e212]:
+                        - generic [ref=e214]:
+                          - generic "Performance Advisor" [ref=e215]:
+                            - generic [ref=e216]: Performance Advisor
+                          - img [ref=e218]
+                    - link "Query Performance" [disabled] [ref=e221] [cursor=pointer]:
+                      - /url: /dashboard/project/undefined/observability/query-performance
+                      - menuitem "Query Performance" [disabled] [ref=e222]:
+                        - generic [ref=e224]:
+                          - generic "Query Performance" [ref=e225]:
+                            - generic [ref=e226]: Query Performance
+                          - img [ref=e228]
+          - separator [disabled] [ref=e231]:
+            - img [ref=e233]
+          - main [ref=e242]:
+            - generic [ref=e246]:
+              - heading "Database Settings" [level=1] [ref=e247]
+              - generic [ref=e248]: Connections, security, and network configuration
+            - generic [ref=e249]:
+              - generic [ref=e250]:
+                - generic [ref=e253]:
+                  - heading "Database password" [level=2] [ref=e254]
+                  - generic [ref=e255]: Used for direct Postgres connections
+                - generic [ref=e258]:
+                  - generic [ref=e259]:
+                    - heading "Reset database password" [level=3] [ref=e260]
+                    - paragraph [ref=e261]: The database password isn’t viewable after creation. Resetting it will break any existing connections.
+                  - button "Reset password" [disabled] [ref=e262]:
+                    - generic [ref=e263]: Reset password
+              - generic [ref=e264]:
+                - generic [ref=e266]:
+                  - heading "Connection pooling" [level=2] [ref=e268]
+                  - link "Docs" [ref=e270] [cursor=pointer]:
+                    - /url: https://supabase.com/docs/guides/database/connecting-to-postgres#connection-pooler
+                    - img [ref=e272]
+                    - generic [ref=e275]: Docs
+                - generic [ref=e297]:
+                  - generic [ref=e298]: You need additional permissions to update connection pooling settings
+                  - generic [ref=e299]:
+                    - button "Cancel" [disabled]:
+                      - generic: Cancel
+                    - button "Save" [disabled]:
+                      - generic: Save
+              - generic [ref=e300]:
+                - generic [ref=e302]:
+                  - heading "SSL configuration" [level=2] [ref=e304]
+                  - link "Docs" [ref=e305] [cursor=pointer]:
+                    - /url: https://supabase.com/docs/guides/platform/ssl-enforcement
+                    - img [ref=e307]
+                    - generic [ref=e310]: Docs
+                - generic [ref=e312]:
+                  - generic [ref=e314]:
+                    - img [ref=e317]
+                    - generic [ref=e319]:
+                      - generic [ref=e321]: Enforce SSL on incoming connections
+                      - paragraph [ref=e322]: Reject non-SSL connections to your database
+                  - generic [ref=e324]:
+                    - button "Download certificate" [disabled] [ref=e327]:
+                      - img [ref=e329]
+                      - generic [ref=e332]: Download certificate
+                    - generic [ref=e333]:
+                      - generic [ref=e335]: SSL Certificate
+                      - paragraph [ref=e336]: Use this certificate when connecting to your database to prevent snooping and man-in-the-middle attacks.
+              - generic [ref=e337]:
+                - generic [ref=e339]:
+                  - heading "Disk Management" [level=2] [ref=e341]
+                  - link "Docs" [ref=e342] [cursor=pointer]:
+                    - /url: https://supabase.com/docs/guides/platform/database-size#disk-management
+                    - img [ref=e344]
+                    - generic [ref=e347]: Docs
+                - alert [ref=e349]:
+                  - img [ref=e350]
+                  - heading "Disk size configuration is not available for projects on the Free Plan" [level=5] [ref=e352]
+                  - generic [ref=e353]:
+                    - paragraph [ref=e354]: If you are intending to use more than 500MB of disk space, then you will need to upgrade to at least the Pro Plan.
+                    - link "Upgrade subscription" [ref=e355] [cursor=pointer]:
+                      - /url: /dashboard/org/undefined/billing?panel=subscriptionPlan
+                      - generic [ref=e356]: Upgrade subscription
+              - generic [ref=e359]:
+                - generic [ref=e360]:
+                  - heading "Network bans" [level=2] [ref=e361]
+                  - generic [ref=e362]: IP addresses temporarily blocked due to suspicious traffic
+                - link "Docs" [ref=e363] [cursor=pointer]:
+                  - /url: https://supabase.com/docs/reference/cli/supabase-network-bans
+                  - img [ref=e365]
+                  - generic [ref=e368]: Docs
+    - generic [ref=e377]:
+      - generic:
+        - img "Background pattern"
+      - generic [ref=e378]:
+        - button "Close banner" [ref=e380] [cursor=pointer]:
+          - img [ref=e382]
+        - generic [ref=e385]:
+          - generic [ref=e386]: Notice
+          - generic [ref=e387]:
+            - paragraph [ref=e388]: We've updated our Terms of Service
+            - paragraph [ref=e389]: Updates define the responsibilities of both you and Supabase in the use of AI.
+          - button "Learn more" [ref=e390] [cursor=pointer]:
+            - generic [ref=e391]: Learn more
+  - alert [ref=e392]

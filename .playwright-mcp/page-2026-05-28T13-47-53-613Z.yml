@@ -1,0 +1,69 @@
+- generic [active] [ref=e2]:
+  - button "Open Next.js Dev Tools" [ref=e8] [cursor=pointer]:
+    - img [ref=e9]
+  - alert [ref=e1]
+  - generic [ref=e31]:
+    - complementary [ref=e32]:
+      - generic [ref=e33]:
+        - img [ref=e35]
+        - generic [ref=e37]: OperaFlow
+      - navigation [ref=e38]:
+        - link "Dashboard" [ref=e39] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e40]
+          - text: Dashboard
+        - link "Kanban" [ref=e45] [cursor=pointer]:
+          - /url: /kanban
+          - img [ref=e46]
+          - text: Kanban
+        - link "Tickets" [ref=e48] [cursor=pointer]:
+          - /url: /tickets
+          - img [ref=e49]
+          - text: Tickets
+        - link "Usuários" [ref=e51] [cursor=pointer]:
+          - /url: /users
+          - img [ref=e52]
+          - text: Usuários
+      - paragraph [ref=e58]: v0.1.0 · MVP
+    - main [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - heading "Kanban" [level=1] [ref=e62]
+          - generic [ref=e63]:
+            - generic [ref=e64]:
+              - img [ref=e65]
+              - generic [ref=e68]: Administrador
+            - button "Sair" [ref=e69]:
+              - img
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - generic [ref=e74]: Aberto
+                - generic [ref=e75]: "0"
+              - paragraph [ref=e78]: Nenhum chamado
+            - generic [ref=e79]:
+              - generic [ref=e80]:
+                - generic [ref=e81]: Em Andamento
+                - generic [ref=e82]: "1"
+              - 'button "ALTA #JSQ9 M�quina 08 parada por falta de press�o Manutenção VENCIDO" [ref=e84]':
+                - generic [ref=e85]:
+                  - generic [ref=e86]:
+                    - generic [ref=e87]: ALTA
+                    - generic [ref=e88]: "#JSQ9"
+                  - paragraph [ref=e89]: M�quina 08 parada por falta de press�o
+                  - paragraph [ref=e90]: Manutenção
+                  - generic [ref=e92]:
+                    - img [ref=e93]
+                    - generic [ref=e96]: VENCIDO
+            - generic [ref=e97]:
+              - generic [ref=e98]:
+                - generic [ref=e99]: Aguardando
+                - generic [ref=e100]: "0"
+              - paragraph [ref=e103]: Nenhum chamado
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - generic [ref=e106]: Escalado
+                - generic [ref=e107]: "0"
+              - paragraph [ref=e110]: Nenhum chamado
+          - status [ref=e111]
