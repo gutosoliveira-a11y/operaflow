@@ -15,7 +15,7 @@ export function Header({ title }: HeaderProps) {
 
   function handleLogout() {
     logout();
-    router.push('/login');
+    router.replace('/login');
   }
 
   return (
@@ -30,6 +30,7 @@ export function Header({ title }: HeaderProps) {
           variant="ghost"
           size="sm"
           onClick={handleLogout}
+          aria-label="Sair"
           className="text-text-secondary hover:text-text-primary hover:bg-surface h-8 w-8 p-0"
         >
           <LogOut className="w-4 h-4" />
