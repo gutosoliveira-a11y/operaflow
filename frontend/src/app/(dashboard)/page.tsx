@@ -25,7 +25,7 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {data && (
+        {!error && data && (
           <>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               <KpiCard
@@ -54,7 +54,7 @@ export default function DashboardPage() {
               />
               <KpiCard
                 label="Tempo Médio (h)"
-                value={data.avgResolutionHours}
+                value={data.avgResolutionHours.toFixed(1)}
                 icon={Timer}
                 color="blue"
               />
@@ -88,7 +88,7 @@ export default function DashboardPage() {
                           item.status === 'cancelado' && 'bg-surface text-text-muted'
                         )}
                       >
-                        {item.status.replace('_', ' ')}
+                        {item.status.replaceAll('_', ' ')}
                       </span>
                     </div>
                   ))}

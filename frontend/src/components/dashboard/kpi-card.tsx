@@ -9,7 +9,7 @@ interface KpiCardProps {
   subtitle?: string;
 }
 
-const colorMap: Record<string, string> = {
+const colorMap: Record<'blue' | 'green' | 'red' | 'amber', string> = {
   blue: 'text-info',
   green: 'text-success',
   red: 'text-danger',
