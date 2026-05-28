@@ -43,7 +43,12 @@ export class UsersService {
 
   async update(id: string, dto: UpdateUserDto) {
     await this.findOne(id);
-    return this.prisma.user.update({ where: { id }, data: dto, select: USER_SELECT });
+    const { name, role, sectorId, isActive } = dto;
+    return this.prisma.user.update({
+      where: { id },
+      data: { name, role, sectorId, isActive },
+      select: USER_SELECT,
+    });
   }
 
   async remove(id: string) {

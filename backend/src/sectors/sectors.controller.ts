@@ -17,10 +17,12 @@ export class SectorsController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todos os setores' })
+  // Qualquer usuário autenticado pode listar setores (necessário na criação de tickets)
   findAll() { return this.sectorsService.findAll(); }
 
   @Get(':id')
   @ApiOperation({ summary: 'Buscar setor por ID' })
+  // Qualquer usuário autenticado pode consultar setor
   findOne(@Param('id') id: string) { return this.sectorsService.findOne(id); }
 
   @Post()
