@@ -114,7 +114,7 @@ export class TicketsService {
       },
     });
 
-    this.gateway.emitTicketCreated(ticket as unknown as Record<string, unknown>);
+    this.gateway.emitTicketCreated(ticket as Record<string, unknown>);
     this.gateway.emitKanbanUpdate(dto.sectorId);
 
     return ticket;
@@ -129,7 +129,7 @@ export class TicketsService {
       include: TICKET_INCLUDE,
     });
 
-    this.gateway.emitTicketUpdated(ticket as unknown as Record<string, unknown>);
+    this.gateway.emitTicketUpdated(ticket as Record<string, unknown>);
     return ticket;
   }
 

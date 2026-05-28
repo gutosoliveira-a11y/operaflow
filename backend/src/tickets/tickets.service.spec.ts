@@ -131,6 +131,7 @@ describe('TicketsService', () => {
         }),
       );
       expect(mockGateway.emitTicketCreated).toHaveBeenCalled();
+      expect(mockGateway.emitKanbanUpdate).toHaveBeenCalledWith('sector-1');
     });
 
     it('deve usar slaDefaultHours do setor quando SlaConfig não existe', async () => {
@@ -171,6 +172,7 @@ describe('TicketsService', () => {
       expect(mockGateway.emitStatusChanged).toHaveBeenCalledWith(
         expect.objectContaining({ ticketId: 'ticket-1' }),
       );
+      expect(mockGateway.emitKanbanUpdate).toHaveBeenCalled();
     });
 
     it('deve definir closedAt quando status é finalizado', async () => {
@@ -185,6 +187,28 @@ describe('TicketsService', () => {
       await service.updateStatus(
         'ticket-1',
         { status: TicketStatus.finalizado },
+        'user-1',
+      );
+
+      expect(mockPrisma.ticket.update).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: expect.objectContaining({ closedAt: expect.any(Date) }),
+        }),
+      );
+    });
+
+    it('deve definir closedAt quando status é cancelado', async () => {
+      mockPrisma.ticket.findUnique.mockResolvedValue(mockTicket);
+      mockPrisma.ticket.update.mockResolvedValue({
+        ...mockTicket,
+        status: TicketStatus.cancelado,
+        closedAt: new Date(),
+      });
+      mockPrisma.ticketMessage.create.mockResolvedValue({});
+
+      await service.updateStatus(
+        'ticket-1',
+        { status: TicketStatus.cancelado },
         'user-1',
       );
 
