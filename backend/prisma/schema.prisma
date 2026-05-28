@@ -15,31 +15,181 @@ enum Role {
   administrador
 }
 
+enum TicketStatus {
+  aberto
+  em_andamento
+  aguardando
+  escalado
+  finalizado
+  cancelado
+}
+
+enum Priority {
+  baixa
+  media
+  alta
+  critica
+}
+
+enum MessageSource {
+  internal
+  whatsapp
+  system
+}
+
 model User {
-  id           String   @id @default(cuid())
+  id           String  @id @default(cuid())
   name         String
-  email        String   @unique
-  passwordHash String
-  role         Role     @default(operador)
-  isActive     Boolean  @default(true)
-  sectorId     String?
-  sector       Sector?  @relation("UserSector", fields: [sectorId], references: [id])
-  ledSectors   Sector[] @relation("SectorResponsible")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  email        String  @unique
+  passwordHash String  @map("password_hash")
+  role         Role    @default(operador)
+  isActive     Boolean @default(true) @map("is_active")
+  sectorId     String? @map("sector_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  sector                Sector?         @relation("UserSector", fields: [sectorId], references: [id])
+  responsibleForSectors Sector[]        @relation("SectorResponsible")
+  createdTickets        Ticket[]        @relation("TicketCreator")
+  responsibleTickets    Ticket[]        @relation("TicketResponsible")
+  messages              TicketMessage[]
+  notifications         Notification[]
 
   @@map("users")
 }
 
 model Sector {
-  id              String   @id @default(cuid())
-  name            String   @unique
-  slaDefaultHours Int      @default(8)
-  responsibleId   String?
-  responsible     User?    @relation("SectorResponsible", fields: [responsibleId], references: [id])
-  users           User[]   @relation("UserSector")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id              String  @id @default(cuid())
+  name            String  @unique
+  slaDefaultHours Int     @default(8) @map("sla_default_hours")
+  responsibleId   String? @map("responsible_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  responsible User?       @relation("SectorResponsible", fields: [responsibleId], references: [id])
+  users       User[]      @relation("UserSector")
+  tickets     Ticket[]
+  slaConfigs  SlaConfig[]
 
   @@map("sectors")
+}
+
+model Ticket {
+  id              String       @id @default(cuid())
+  title           String
+  description     String?
+  status          TicketStatus @default(aberto)
+  priority        Priority     @default(media)
+  sectorId        String       @map("sector_id")
+  responsibleId   String?      @map("responsible_id")
+  createdBy       String       @map("created_by")
+  source          String       @default("manual")
+  slaDueDate      DateTime?    @map("sla_due_date")
+  escalationLevel Int          @default(0) @map("escalation_level")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  closedAt  DateTime? @map("closed_at")
+
+  sector      Sector             @relation(fields: [sectorId], references: [id])
+  responsible User?              @relation("TicketResponsible", fields: [responsibleId], references: [id])
+  creator     User               @relation("TicketCreator", fields: [createdBy], references: [id])
+  messages    TicketMessage[]
+  attachments TicketAttachment[]
+  escalations Escalation[]
+
+  @@index([status])
+  @@index([sectorId])
+  @@index([slaDueDate])
+  @@map("tickets")
+}
+
+model TicketMessage {
+  id        String        @id @default(cuid())
+  ticketId  String        @map("ticket_id")
+  content   String
+  authorId  String?       @map("author_id")
+  source    MessageSource @default(internal)
+  createdAt DateTime      @default(now()) @map("created_at")
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  author User?  @relation(fields: [authorId], references: [id])
+
+  @@map("ticket_messages")
+}
+
+model TicketAttachment {
+  id        String   @id @default(cuid())
+  ticketId  String   @map("ticket_id")
+  filename  String
+  url       String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@map("ticket_attachments")
+}
+
+model Escalation {
+  id              String   @id @default(cuid())
+  ticketId        String   @map("ticket_id")
+  escalationLevel Int      @map("escalation_level")
+  escalatedTo     String?  @map("escalated_to")
+  reason          String?
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@map("escalations")
+}
+
+model SlaConfig {
+  id         String   @id @default(cuid())
+  sectorId   String   @map("sector_id")
+  priority   Priority
+  hoursLimit Int      @map("hours_limit")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  sector Sector @relation(fields: [sectorId], references: [id], onDelete: Cascade)
+
+  @@unique([sectorId, priority])
+  @@map("sla_config")
+}
+
+model AiLog {
+  id         String   @id @default(cuid())
+  rawMessage String   @map("raw_message")
+  aiResponse Json     @map("ai_response")
+  confidence Float?
+  ticketId   String?  @map("ticket_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("ai_logs")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  title     String
+  message   String
+  type      String   @default("info")
+  isRead    Boolean  @default(false) @map("is_read")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+model WhatsappContact {
+  id           String   @id @default(cuid())
+  phone        String   @unique
+  name         String?
+  lastTicketId String?  @map("last_ticket_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("whatsapp_contacts")
 }
