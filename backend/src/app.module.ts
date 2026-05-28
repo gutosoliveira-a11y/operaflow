@@ -11,6 +11,7 @@ import { TicketsModule } from './tickets/tickets.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { WhatsAppModule } from './whatsapp/whatsapp.module';
 import { AIModule } from './ai/ai.module';
+import { SlaModule } from './sla/sla.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { AIModule } from './ai/ai.module';
     DashboardModule,
     WhatsAppModule,
     AIModule,
+    SlaModule,
   ],
 })
 export class AppModule {}
