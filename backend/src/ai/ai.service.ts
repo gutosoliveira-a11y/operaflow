@@ -37,14 +37,18 @@ export class AIService implements OnModuleInit {
   async classify(text: string, ticketId?: string): Promise<ClassificationResult> {
     const result = await this.classifier.classify(text);
 
-    await this.prisma.aiLog.create({
-      data: {
-        rawMessage: text,
-        aiResponse: result as object,
-        confidence: null,
-        ticketId: ticketId ?? null,
-      },
-    });
+    try {
+      await this.prisma.aiLog.create({
+        data: {
+          rawMessage: text,
+          aiResponse: result as object,
+          confidence: null,
+          ticketId: ticketId ?? null,
+        },
+      });
+    } catch (err) {
+      this.logger.warn(`Failed to persist AiLog: ${(err as Error).message}`);
+    }
 
     return result;
   }

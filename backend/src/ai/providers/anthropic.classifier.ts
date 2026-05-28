@@ -23,7 +23,10 @@ export class AnthropicClassifier implements IAIClassifier {
       messages: [{ role: 'user', content: prompt }],
     });
     const block = response.content[0];
-    const raw = block.type === 'text' ? block.text : '{}';
+    if (!block || block.type !== 'text') {
+      throw new Error('Anthropic returned no text content');
+    }
+    const raw = block.text;
     this.logger.debug(`Anthropic raw response: ${raw}`);
     return parseClassificationResponse(raw);
   }

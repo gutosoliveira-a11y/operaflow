@@ -19,7 +19,8 @@ export class GeminiClassifier implements IAIClassifier {
     const prompt = buildClassificationPrompt(text);
     const generativeModel = this.client.getGenerativeModel({ model: this.model });
     const result = await generativeModel.generateContent(prompt);
-    const raw = result.response.text();
+    const raw = result.response?.text() ?? '';
+    if (!raw) throw new Error('Gemini returned empty response');
     this.logger.debug(`Gemini raw response: ${raw}`);
     return parseClassificationResponse(raw);
   }

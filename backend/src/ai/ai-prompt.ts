@@ -20,5 +20,9 @@ Retorne SOMENTE o JSON válido, sem markdown, sem explicações.`;
 
 export function parseClassificationResponse(raw: string): ClassificationResult {
   const cleaned = raw.trim().replace(/^```json?\s*/i, '').replace(/\s*```$/i, '');
-  return JSON.parse(cleaned) as ClassificationResult;
+  try {
+    return JSON.parse(cleaned) as ClassificationResult;
+  } catch {
+    throw new Error(`AI returned invalid JSON: ${cleaned.slice(0, 200)}`);
+  }
 }
