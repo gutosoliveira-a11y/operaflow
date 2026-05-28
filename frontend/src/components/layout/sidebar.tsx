@@ -6,7 +6,7 @@ import { LayoutDashboard, Columns, Ticket, Users, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const nav = [
-  { href: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/kanban', label: 'Kanban', icon: Columns },
   { href: '/tickets', label: 'Tickets', icon: Ticket },
   { href: '/users', label: 'Usuários', icon: Users },

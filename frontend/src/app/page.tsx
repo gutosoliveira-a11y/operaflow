@@ -20,7 +20,7 @@ export default function RootPage() {
 
   useEffect(() => {
     if (!hydrated) return;
-    router.replace(isAuthenticated ? '/kanban' : '/login');
+    router.replace(isAuthenticated ? '/dashboard' : '/login');
   }, [hydrated, isAuthenticated, router]);
 
   return null;
