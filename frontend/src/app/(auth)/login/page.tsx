@@ -29,7 +29,7 @@ export default function LoginPage() {
         password,
       });
       login(data.data.accessToken, data.data.user);
-      router.replace('/kanban');
+      router.replace('/dashboard');
     } catch {
       setError('Email ou senha inválidos. Tente novamente.');
     } finally {
