@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  operador
+  supervisor
+  coordenador
+  gerente
+  administrador
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(operador)
+  isActive     Boolean  @default(true)
+  sectorId     String?
+  sector       Sector?  @relation("UserSector", fields: [sectorId], references: [id])
+  ledSectors   Sector[] @relation("SectorResponsible")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Sector {
+  id              String   @id @default(cuid())
+  name            String   @unique
+  slaDefaultHours Int      @default(8)
+  responsibleId   String?
+  responsible     User?    @relation("SectorResponsible", fields: [responsibleId], references: [id])
+  users           User[]   @relation("UserSector")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("sectors")
+}
