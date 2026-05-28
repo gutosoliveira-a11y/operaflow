@@ -26,12 +26,16 @@ export class WhatsAppService {
       '';
     if (!text.trim()) return;
 
-    await this.queue.add('process-message', {
-      remoteJid: msg.key.remoteJid,
-      text: text.trim(),
-      pushName: msg.pushName ?? '',
-    });
-    this.logger.log(`Enqueued message from ${msg.key.remoteJid}`);
+    try {
+      await this.queue.add('process-message', {
+        remoteJid: msg.key.remoteJid,
+        text: text.trim(),
+        pushName: msg.pushName ?? '',
+      });
+      this.logger.log(`Enqueued message from ${msg.key.remoteJid}`);
+    } catch (err) {
+      this.logger.error(`Failed to enqueue message from ${msg.key.remoteJid}`, err);
+    }
   }
 
   async sendReply(remoteJid: string, message: string): Promise<void> {
