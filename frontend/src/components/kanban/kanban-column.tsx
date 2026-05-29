@@ -35,7 +35,7 @@ export function KanbanColumn({ id, tickets }: KanbanColumnProps) {
     >
       <div className="flex items-center justify-between px-3 py-3 border-b border-border">
         <span className="text-text-primary text-sm font-semibold">{config.label}</span>
-        <span className="bg-border text-text-secondary text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+        <span className="bg-surface border border-border text-text-secondary text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium tabular-nums">
           {tickets.length}
         </span>
       </div>
@@ -47,7 +47,7 @@ export function KanbanColumn({ id, tickets }: KanbanColumnProps) {
           ))}
         </SortableContext>
         {tickets.length === 0 && (
-          <div className="flex items-center justify-center h-24">
+          <div className="flex items-center justify-center h-24 border-2 border-dashed border-border rounded-lg mx-1">
             <p className="text-text-muted text-xs">Nenhum chamado</p>
           </div>
         )}

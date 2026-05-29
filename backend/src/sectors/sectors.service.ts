@@ -38,4 +38,20 @@ export class SectorsService {
     await this.findOne(id);
     return this.prisma.sector.delete({ where: { id } });
   }
+
+  async findAllSlaConfig() {
+    return this.prisma.slaConfig.findMany({
+      include: { sector: { select: { id: true, name: true } } },
+      orderBy: [{ sector: { name: 'asc' } }, { priority: 'asc' }],
+    });
+  }
+
+  async upsertSlaConfig(sectorId: string, priority: string, hoursLimit: number) {
+    await this.findOne(sectorId);
+    return this.prisma.slaConfig.upsert({
+      where: { sectorId_priority: { sectorId, priority: priority as any } },
+      create: { sectorId, priority: priority as any, hoursLimit },
+      update: { hoursLimit },
+    });
+  }
 }

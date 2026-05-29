@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Delete, Param, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Param, Body, UseGuards, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Role } from '@prisma/client';
 import { SectorsService } from './sectors.service';
@@ -17,13 +17,23 @@ export class SectorsController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todos os setores' })
-  // Qualquer usuário autenticado pode listar setores (necessário na criação de tickets)
   findAll() { return this.sectorsService.findAll(); }
+
+  @Get('sla-config')
+  @ApiOperation({ summary: 'Listar todas as configurações SLA' })
+  findAllSlaConfig() { return this.sectorsService.findAllSlaConfig(); }
 
   @Get(':id')
   @ApiOperation({ summary: 'Buscar setor por ID' })
-  // Qualquer usuário autenticado pode consultar setor
   findOne(@Param('id') id: string) { return this.sectorsService.findOne(id); }
+
+  @Patch(':id/sla-config')
+  @Roles(Role.administrador, Role.gerente, Role.coordenador)
+  @ApiOperation({ summary: 'Atualizar configuração SLA de um setor' })
+  upsertSlaConfig(
+    @Param('id') id: string,
+    @Body() body: { priority: string; hoursLimit: number },
+  ) { return this.sectorsService.upsertSlaConfig(id, body.priority, body.hoursLimit); }
 
   @Post()
   @Roles(Role.administrador)

@@ -88,3 +88,30 @@ export interface LoginResponse {
   accessToken: string;
   user: User;
 }
+
+export interface SlaConfig {
+  id: string;
+  sectorId: string;
+  priority: Priority;
+  hoursLimit: number;
+  sector: { id: string; name: string };
+}
+
+export interface SectorWithCount extends Sector {
+  _count?: { tickets: number };
+  openTickets?: number;
+}
+
+export interface ReportData {
+  period: number;
+  ticketsBySector: { sectorId: string; sectorName: string; count: number }[];
+  avgResolutionByPriority: { priority: string; avgHours: number }[];
+  slaComplianceBySector: { sectorId: string; sectorName: string; compliance: number }[];
+}
+
+export interface PaginatedTickets {
+  items: Ticket[];
+  total: number;
+  page: number;
+  totalPages: number;
+}

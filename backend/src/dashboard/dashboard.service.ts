@@ -84,6 +84,64 @@ export class DashboardService {
     };
   }
 
+  async getReports(period: number) {
+    const since = new Date();
+    since.setDate(since.getDate() - period);
+
+    const [ticketsBySector, finalized, sectors] = await Promise.all([
+      this.prisma.ticket.groupBy({
+        by: ['sectorId'],
+        where: { createdAt: { gte: since } },
+        _count: { id: true },
+      }),
+      this.prisma.ticket.findMany({
+        where: {
+          status: TicketStatus.finalizado,
+          closedAt: { gte: since },
+          slaDueDate: { not: null },
+        },
+        select: { priority: true, slaDueDate: true, closedAt: true, createdAt: true, sectorId: true },
+      }),
+      this.prisma.sector.findMany({ select: { id: true, name: true } }),
+    ]);
+
+    const sectorMap = Object.fromEntries(sectors.map((s) => [s.id, s.name]));
+
+    const byPriority: Record<string, { total: number; sumHours: number }> = {};
+    for (const t of finalized) {
+      const p = t.priority as string;
+      if (!byPriority[p]) byPriority[p] = { total: 0, sumHours: 0 };
+      byPriority[p].total += 1;
+      byPriority[p].sumHours += (t.closedAt!.getTime() - t.createdAt.getTime()) / 3_600_000;
+    }
+
+    const bySectorCompliance: Record<string, { onTime: number; total: number }> = {};
+    for (const t of finalized) {
+      const s = t.sectorId;
+      if (!bySectorCompliance[s]) bySectorCompliance[s] = { onTime: 0, total: 0 };
+      bySectorCompliance[s].total += 1;
+      if (t.closedAt! <= t.slaDueDate!) bySectorCompliance[s].onTime += 1;
+    }
+
+    return {
+      period,
+      ticketsBySector: ticketsBySector.map((b) => ({
+        sectorId: b.sectorId,
+        sectorName: sectorMap[b.sectorId] ?? b.sectorId,
+        count: b._count.id,
+      })),
+      avgResolutionByPriority: Object.entries(byPriority).map(([priority, d]) => ({
+        priority,
+        avgHours: d.total > 0 ? Math.round(d.sumHours / d.total) : 0,
+      })),
+      slaComplianceBySector: Object.entries(bySectorCompliance).map(([sectorId, d]) => ({
+        sectorId,
+        sectorName: sectorMap[sectorId] ?? sectorId,
+        compliance: d.total > 0 ? Math.round((d.onTime / d.total) * 100) : 100,
+      })),
+    };
+  }
+
   private calculateSlaCompliance(
     tickets: { slaDueDate: Date | null; closedAt: Date | null }[],
   ): number {

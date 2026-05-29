@@ -70,7 +70,11 @@
       "Bash(node -e \"const pkg = require\\('./node_modules/@nestjs/bullmq/package.json'\\); console.log\\(pkg.version\\);\")",
       "Bash(node -e \"const pkg = require\\('./node_modules/bullmq/package.json'\\); console.log\\(pkg.version\\);\")",
       "Bash(echo \"PID: $!\")",
-      "PowerShell(try { $r = Invoke-RestMethod -Uri \"http://localhost:3001/api/auth/login\" -Method POST -Body '{\"email\":\"bad@test.com\",\"password\":\"bad\"}' -ContentType \"application/json\" -ErrorAction Stop; $r } catch { $_.Exception.Response.StatusCode.value__; $_.Exception.Message })"
+      "PowerShell(try { $r = Invoke-RestMethod -Uri \"http://localhost:3001/api/auth/login\" -Method POST -Body '{\"email\":\"bad@test.com\",\"password\":\"bad\"}' -ContentType \"application/json\" -ErrorAction Stop; $r } catch { $_.Exception.Response.StatusCode.value__; $_.Exception.Message })",
+      "Bash(taskkill /PID 1408 /F)",
+      "WebFetch(domain:localhost)",
+      "Bash(Copy-Item *)",
+      "Bash(node *)"
     ]
   }
 }
