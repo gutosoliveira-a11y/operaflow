@@ -19,4 +19,4 @@ RUN rm -rf dist && npm run build && test -f dist/main.js && echo "BUILD OK: dist
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main 2>&1"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node start.js"]
