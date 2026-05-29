@@ -15,7 +15,7 @@ RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" npx prisma gene
 
 COPY . .
 
-RUN rm -rf dist && npx tsc -p tsconfig.build.json 2>&1; echo "TSC EXIT CODE: $?"; ls -la dist/ | head -30
+RUN rm -rf dist && npm run build && test -f dist/main.js && echo "BUILD OK: dist/main.js found" || (echo "BUILD FAILED: dist/main.js missing" && ls -la dist/ && exit 1)
 
 EXPOSE 3000
 
