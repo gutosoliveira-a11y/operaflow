@@ -7,11 +7,14 @@ import { buildClassificationPrompt, parseClassificationResponse } from '../ai-pr
 @Injectable()
 export class AnthropicClassifier implements IAIClassifier {
   private readonly logger = new Logger(AnthropicClassifier.name);
-  private readonly client: Anthropic;
+  private readonly client: Anthropic | null = null;
   private readonly model: string;
 
   constructor(private readonly config: ConfigService) {
-    this.client = new Anthropic({ apiKey: this.config.get<string>('ANTHROPIC_API_KEY') });
+    const apiKey = this.config.get<string>('ANTHROPIC_API_KEY');
+    if (apiKey) {
+      this.client = new Anthropic({ apiKey });
+    }
     this.model = this.config.get<string>('ANTHROPIC_MODEL', 'claude-haiku-4-5-20251001');
   }
 
@@ -22,6 +25,7 @@ export class AnthropicClassifier implements IAIClassifier {
       max_tokens: 300,
       messages: [{ role: 'user', content: prompt }],
     });
+    if (!this.client) throw new Error('ANTHROPIC_API_KEY não configurada');
     const block = response.content[0];
     if (!block || block.type !== 'text') {
       throw new Error('Anthropic returned no text content');

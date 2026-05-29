@@ -7,15 +7,19 @@ import { buildClassificationPrompt, parseClassificationResponse } from '../ai-pr
 @Injectable()
 export class OpenAIClassifier implements IAIClassifier {
   private readonly logger = new Logger(OpenAIClassifier.name);
-  private readonly client: OpenAI;
+  private readonly client: OpenAI | null = null;
   private readonly model: string;
 
   constructor(private readonly config: ConfigService) {
-    this.client = new OpenAI({ apiKey: this.config.get<string>('OPENAI_API_KEY') });
+    const apiKey = this.config.get<string>('OPENAI_API_KEY');
+    if (apiKey) {
+      this.client = new OpenAI({ apiKey });
+    }
     this.model = this.config.get<string>('OPENAI_MODEL', 'gpt-4o-mini');
   }
 
   async classify(text: string): Promise<ClassificationResult> {
+    if (!this.client) throw new Error('OPENAI_API_KEY não configurada');
     const prompt = buildClassificationPrompt(text);
     const response = await this.client.chat.completions.create({
       model: this.model,

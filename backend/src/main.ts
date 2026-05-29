@@ -39,4 +39,7 @@ async function bootstrap() {
   console.log(`Swagger em: http://localhost:${port}/api/docs`);
 }
 
-bootstrap();
+bootstrap().catch((err) => {
+  console.error('FATAL: falha ao iniciar o servidor:', err);
+  process.exit(1);
+});

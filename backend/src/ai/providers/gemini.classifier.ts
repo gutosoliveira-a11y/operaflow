@@ -7,15 +7,19 @@ import { buildClassificationPrompt, parseClassificationResponse } from '../ai-pr
 @Injectable()
 export class GeminiClassifier implements IAIClassifier {
   private readonly logger = new Logger(GeminiClassifier.name);
-  private readonly client: GoogleGenerativeAI;
+  private readonly client: GoogleGenerativeAI | null = null;
   private readonly model: string;
 
   constructor(private readonly config: ConfigService) {
-    this.client = new GoogleGenerativeAI(this.config.get<string>('GEMINI_API_KEY', ''));
+    const apiKey = this.config.get<string>('GEMINI_API_KEY');
+    if (apiKey) {
+      this.client = new GoogleGenerativeAI(apiKey);
+    }
     this.model = this.config.get<string>('GEMINI_MODEL', 'gemini-1.5-flash');
   }
 
   async classify(text: string): Promise<ClassificationResult> {
+    if (!this.client) throw new Error('GEMINI_API_KEY não configurada');
     const prompt = buildClassificationPrompt(text);
     const generativeModel = this.client.getGenerativeModel({ model: this.model });
     const result = await generativeModel.generateContent(prompt);
