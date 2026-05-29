@@ -19,4 +19,4 @@ RUN rm -rf dist && npm run build && test -f dist/main.js && echo "BUILD OK: dist
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "echo '>>> Starting migrations...' && npx prisma migrate deploy && echo '>>> Starting NestJS...' && node dist/main"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main 2>&1"]
