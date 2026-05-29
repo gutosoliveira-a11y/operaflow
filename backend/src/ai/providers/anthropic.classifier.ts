@@ -19,13 +19,13 @@ export class AnthropicClassifier implements IAIClassifier {
   }
 
   async classify(text: string): Promise<ClassificationResult> {
+    if (!this.client) throw new Error('ANTHROPIC_API_KEY não configurada');
     const prompt = buildClassificationPrompt(text);
     const response = await this.client.messages.create({
       model: this.model,
       max_tokens: 300,
       messages: [{ role: 'user', content: prompt }],
     });
-    if (!this.client) throw new Error('ANTHROPIC_API_KEY não configurada');
     const block = response.content[0];
     if (!block || block.type !== 'text') {
       throw new Error('Anthropic returned no text content');
