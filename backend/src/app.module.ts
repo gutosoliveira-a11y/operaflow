@@ -22,14 +22,26 @@ import { NotificationsModule } from './notifications/notifications.module';
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => {
         const redisUrl = config.get<string>('REDIS_URL');
+        if (redisUrl) {
+          const u = new URL(redisUrl);
+          return {
+            connection: {
+              host: u.hostname,
+              port: parseInt(u.port) || 6379,
+              password: u.password || undefined,
+              username: u.username || undefined,
+              maxRetriesPerRequest: null,
+              enableReadyCheck: false,
+            },
+          };
+        }
         return {
-          connection: redisUrl
-            ? { url: redisUrl, skipVersionCheck: true }
-            : {
-                host: config.get<string>('REDIS_HOST', '127.0.0.1'),
-                port: config.get<number>('REDIS_PORT', 6379),
-                skipVersionCheck: true,
-              },
+          connection: {
+            host: config.get<string>('REDIS_HOST', '127.0.0.1'),
+            port: config.get<number>('REDIS_PORT', 6379),
+            maxRetriesPerRequest: null,
+            enableReadyCheck: false,
+          },
         };
       },
       inject: [ConfigService],
