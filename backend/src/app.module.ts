@@ -20,14 +20,18 @@ import { NotificationsModule } from './notifications/notifications.module';
     ThrottlerModule.forRoot([{ ttl: 60000, limit: 100 }]),
     BullModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (config: ConfigService) => ({
-        connection: {
-          host: config.get<string>('REDIS_HOST', '127.0.0.1'),
-          port: config.get<number>('REDIS_PORT', 6379),
-          // Allow older Redis versions (< 5) in development environments
-          skipVersionCheck: true,
-        },
-      }),
+      useFactory: (config: ConfigService) => {
+        const redisUrl = config.get<string>('REDIS_URL');
+        return {
+          connection: redisUrl
+            ? { url: redisUrl, skipVersionCheck: true }
+            : {
+                host: config.get<string>('REDIS_HOST', '127.0.0.1'),
+                port: config.get<number>('REDIS_PORT', 6379),
+                skipVersionCheck: true,
+              },
+        };
+      },
       inject: [ConfigService],
     }),
     PrismaModule,
