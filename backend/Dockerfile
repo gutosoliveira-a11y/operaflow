@@ -15,7 +15,7 @@ RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" npx prisma gene
 
 COPY . .
 
-RUN npm run build
+RUN rm -rf dist && npm run build
 
 RUN ls -la dist/
 
