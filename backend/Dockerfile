@@ -15,9 +15,7 @@ RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy" npx prisma gene
 
 COPY . .
 
-RUN rm -rf dist && npm run build
-
-RUN ls -la dist/
+RUN rm -rf dist && npx tsc -p tsconfig.build.json 2>&1; echo "TSC EXIT CODE: $?"; ls -la dist/ | head -30
 
 EXPOSE 3000
 
