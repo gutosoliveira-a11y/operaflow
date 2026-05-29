@@ -1,3 +1,15 @@
+process.stdout.write('=== OPERAFLOW PROCESS STARTED ===\n');
+
+process.on('uncaughtException', (err) => {
+  process.stdout.write(`UNCAUGHT EXCEPTION: ${err.message}\n${err.stack}\n`);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason) => {
+  process.stdout.write(`UNHANDLED REJECTION: ${String(reason)}\n`);
+  process.exit(1);
+});
+
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -5,7 +17,10 @@ import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 
+process.stdout.write('=== IMPORTS OK ===\n');
+
 async function bootstrap() {
+  process.stdout.write('=== BOOTSTRAP STARTED ===\n');
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix('api');
@@ -40,6 +55,6 @@ async function bootstrap() {
 }
 
 bootstrap().catch((err) => {
-  console.error('FATAL: falha ao iniciar o servidor:', err);
+  process.stdout.write(`FATAL BOOTSTRAP ERROR: ${err?.message}\n${err?.stack}\n`);
   process.exit(1);
 });
